@@ -37,4 +37,10 @@ public class Member {
 		return password.equals(pwd);
 	}
 	
+	// 암호 변경 기능을 구현하기 위해 Member와 MemberDao 두 클래스에 코드추가
+	// 먼저, Member 클래스에 changePassword() 메서드를 추가한다
+	public void changePassword(String newPwd) {
+		this.password = newPwd;
+	}
+	
 }

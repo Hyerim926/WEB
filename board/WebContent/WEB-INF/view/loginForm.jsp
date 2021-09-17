@@ -10,8 +10,9 @@
 <body>
 <!-- 로그인 폼을 보여줄 loginForm.jsp 웹문서 작성 -->
 <form action="login.do" method="post">
-<c:if test="${errors.idOrPwNotMatch}"></c:if>
+<c:if test="${errors.idOrPwNotMatch}">
 아이디와 암호가 일치하지 않습니다.
+</c:if>
 <p>
 	아이디:<br><input type="text" name="id" value="${param.id}">
 	<!-- loginForm.jsp는 errors 속성을 사용해서
