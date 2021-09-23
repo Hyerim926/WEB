@@ -1,65 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
              http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
          
-       <listener>
-       	<listener-class>jdbc.DBCPInitListener</listener-class>
-       </listener>
+ 		 <listener>
+         	<listener-class>jdbc.DBCPInitListener</listener-class>
+         </listener>
+
+		<context-param>
+			<param-name>poolConfig</param-name>
+			<param-value>
+			jdbcdriver=com.mysql.cj.jdbc.Driver
+			jdbcUrl=jdbc:mysql://localhost:3306/board?characterEncoding=UTF-8&amp;serverTimezone=UTC
+			dbUser=jspexam
+			dbPass=jsppw
+			poolName=board			
+			</param-value>		
+		
+		</context-param>
+         
+		<filter>
+		  <filter-name>encodingFilter</filter-name>
+		  <filter-class>util.CharacterEncodingFilter</filter-class>
+		  <init-param>
+		  	<param-name>encoding</param-name>
+		  	<param-value>utf-8</param-value>
+		  </init-param>
+  		</filter>
+  		
+  	    <filter-mapping>
+  			<filter-name>encodingFilter</filter-name>
+  			<url-pattern>/*</url-pattern>  
+  	    </filter-mapping>
+  	    
+  	    <!-- 특정 확장자(예를 들어, .do 확장자)를 가진 요청을
+		      ControllerUsingURI 컨트롤러 서블릿이 처리하도록
+		      web.xml 파일에 적용함 -->		
+		<servlet>
+			<servlet-name>ControllerUsingURI</servlet-name>
+			<servlet-class>mvc.controller.ControllerUsingURI</servlet-class>
+			<init-param>
+				<param-name>configFile</param-name>
+				<param-value>/WEB-INF/commandHandlerURI.properties</param-value>
+			</init-param>
+			<load-on-startup>1</load-on-startup>
+		</servlet>
+		
+		<servlet-mapping>
+			<servlet-name>ControllerUsingURI</servlet-name>
+			<url-pattern>*.do</url-pattern>		
+		</servlet-mapping>	
+		
+		<!-- LoginCheckFilter를 실행하기 위해 web.xml 파일에
+	  	      다음과 같은 필터 설정을 추가해 주자. -->
+	  <filter>
+	    <filter-name>LoginCheckFilter</filter-name>
+	    <filter-class>filter.LoginCheckFilter</filter-class>
+	  </filter>
+	  <filter-mapping>
+	    <filter-name>LoginCheckFilter</filter-name>
+	    
+	    <!-- web.xml 파일의 설정에 따라 /changePwd.do에 해당하는 요청을 보내면
+	    	 LoginCheckFilter가 동작한다. -->
+	    <url-pattern>/changePwd.do</url-pattern>
+	    
+	    <!-- 게시글 쓰기 기능은 로그인 한 사용자만 실행할 수 있게 할 것이므로
+	    	 LoginCheckFilter 매핑 설정에 게시글 쓰기 관련 경로를 추가한다. -->
+	    <url-pattern>/article/write.do</url-pattern>
+	    
+	  </filter-mapping>		
 
 
-<context-param>
-	<param-name>poolConfig</param-name>
-	<param-value>
-	jdbcdriver=com.mysql.cj.jdbc.Driver
-	jdbcUrl=jdbc:mysql://localhost:3306/board?characterEncoding=UTF-8&amp;serverTimezone=UTC
-	dbUser=jspexam
-	dbPass=jsppw
-	poolName=board			
-	</param-value>		
-
-</context-param>
-
-<filter>
-	<filter-name>encodingFilter</filter-name>
-	<filter-class>util.CharacterEncodingFilter</filter-class>
-	<init-param>
-	<param-name>encoding</param-name>
-	<param-value>utf-8</param-value>
-	</init-param>
-</filter>
-
-<filter-mapping>
- 		<filter-name>encodingFilter</filter-name>
- 		<url-pattern>/*</url-pattern>  
-</filter-mapping>
-
-<servlet>
-	<servlet-name>ControllerUsingURI</servlet-name>
-	<servlet-class>mvc.controller.ControllerUsingURI</servlet-class>
-	<init-param>
-		<param-name>configFile</param-name>
-		<param-value>/WEB-INF/commandHandlerURI.properties</param-value>
-	</init-param>
-	<load-on-startup>1</load-on-startup>
-</servlet>
-
-<servlet-mapping>
-	<servlet-name>ControllerUsingURI</servlet-name>
-	<url-pattern>*.do</url-pattern>		
-</servlet-mapping>
-
-<filter>
-	<filter-name>LoginCheckFilter</filter-name>
-	<filter-class>filter.LoginCheckFilter</filter-class>
-</filter>
-
-<filter-mapping>
-	<filter-name>LoginCheckFilter</filter-name>
-	<url-pattern>/changePwd.do</url-pattern>
-</filter-mapping>
-
-  
 </web-app>
