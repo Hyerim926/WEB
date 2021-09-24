@@ -19,8 +19,7 @@
 	</p>
 	<p>
 		내용:<br>
-		<textarea rows="5" cols="30" name="content">
-			${param.content}</textarea>
+		<textarea rows="5" cols="30" name="content">${param.content}</textarea>
 	</p>	
 	<input type="submit" value="새 글 등록">
 	</form>

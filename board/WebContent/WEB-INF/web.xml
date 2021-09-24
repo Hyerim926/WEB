@@ -70,6 +70,14 @@
 	    <!-- 게시글 쓰기 기능은 로그인 한 사용자만 실행할 수 있게 할 것이므로
 	    	 LoginCheckFilter 매핑 설정에 게시글 쓰기 관련 경로를 추가한다. -->
 	    <url-pattern>/article/write.do</url-pattern>
+
+		<!-- 게시글 수정 기능은 로그인 한 사용자만 실행할 수 있게 할 것이므로
+			 LoginCheckFilter 매핑 설정에 게시글 수정 관련 경로를 추가한다. -->
+	    <url-pattern>/article/modify.do</url-pattern>
+
+		<!-- 게시글 삭제 기능은 로그인 한 사용자만 실행할 수 있게 할 것이므로
+			 LoginCheckFilter 매핑 설정에 게시글 삭제 관련 경로를 추가한다. -->
+	    <url-pattern>/article/delete.do</url-pattern>
 	    
 	  </filter-mapping>		
 
