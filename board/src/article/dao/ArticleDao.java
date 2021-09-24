@@ -13,7 +13,6 @@ import java.util.List;
 import article.model.Article;
 import article.model.Writer;
 import jdbc.JdbcUtil;
-import oracle.net.aso.s;
 
 // article 테이블과 article_content 테이블에 데이터를 추가할 때
 // 사용할 ArticleDao 클래스와 ArticleContentDao 클래스를 구현한다.
@@ -160,5 +159,27 @@ public class ArticleDao {
 			pstmt.executeUpdate();
 		}
 	}
+
+	// ArticleDao의 update() 메서드는 파라미터로 전달받은 게시글 번호와 제목을 이용해서 데이터 수정
+	public int update(Connection conn, int no, String title) throws SQLException {
+		// update 쿼리처럼 moddate 칼럼의 값을 현재시간으로 설정해서 데이터 최근 수정 시간을 기록함
+		try (PreparedStatement pstmt = conn
+				.prepareStatement("update article set title = ?, moddate = now() where article_no=?")) {
+			pstmt.setString(1, title);
+			pstmt.setInt(2, no);
+			return pstmt.executeUpdate();
+		}
+	}
+
+	public int delete(Connection conn, int no) throws SQLException {
+		// update 쿼리처럼 moddate 칼럼의 값을 현재시간으로 설정해서 데이터 최근 수정 시간을 기록함
+		try (PreparedStatement pstmt = conn
+				.prepareStatement("delete from article where article_no=?")) {
+			pstmt.setInt(1, no);
+			return pstmt.executeUpdate();
+		}
+	}
+	
+	
 
 }
