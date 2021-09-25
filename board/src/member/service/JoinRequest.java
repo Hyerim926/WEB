@@ -46,6 +46,7 @@ public class JoinRequest {
 	// 필드 데이터가 유효한지 여부를 검사할 때 사용하는
 	// isPasswordEqualToConfirm() 메서드 선언함.
 	public boolean isPasswordEqualToConfirm() {
+		// password값이 null이 아니거나 confirmPassword와 같지 않을 때 password를 리턴함
 		return password != null && password.equals(confirmPassword);
 	}
 	

@@ -31,7 +31,7 @@ public class JoinHandler implements CommandHandler {
 		
 		// 요청 방식이 GET(또는 get)이면 processForm()을 실행하고,
 		// 요청 방식이 POST(또는 post)이면 processSubmit()을 실행한다.
-		// 참고로, equls() 메서드는 문자열 비교 시 대소문자를 구분해서,
+		// 참고로, equals() 메서드는 문자열 비교 시 대소문자를 구분해서,
 		// 문자열이 같은 경우 true 리턴하고, 다른 경우 false 리턴함.
 		// 하지만, equalsIgnoreCase() 메서드는 문자열 비교 시 대소문자를
 		// 구분하지 않음. 즉, 대소문자 구분 없이 문자열만 같다면 true 리턴하고,
