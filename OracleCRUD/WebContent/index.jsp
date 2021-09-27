@@ -8,10 +8,10 @@
 </head>
 <body>
 ${ctxPath = pageContext.request.contextPath ; ''}
-<a href="${ctxPath}/write.do">[게시글 등록]</a><br><br>
-<a href="${ctxPath}/recent.do">[최근 게시글 보기]</a><br><br>
-<a href="${ctxPath}/modify.do">[최근 게시글 수정]</a><br><br>
-<a href="${ctxPath}/delete.do">[최근 게시글 삭제]</a>
+<a href="${ctxPath}/write.do"><input type="submit" value="게시글 작성"></a><br><br>
+<a href="${ctxPath}/recent.do"><input type="submit" value="최근 게시글 보기"></a><br><br>
+<a href="${ctxPath}/modify.do"><input type="submit" value="최근 게시글 수정"></a><br><br>
+<a href="${ctxPath}/delete.do"><input type="submit" value="최근 게시글 삭제"></a>
 
 </body>
 </html>
