@@ -11,7 +11,7 @@
 	<form action="write.do" method="post">
 	<p>
 	[게시글 등록]<br>
-	제목:<br><input type="text" name="title" value="${param.title}">
+	제목: <input type="text" name="title" value="${param.title}">
 	<c:if test="${errors.title}">제목을 입력하세요.</c:if>
 	</p>
 	<p>
@@ -19,7 +19,7 @@
 	<textarea rows="5" cols="30" name="content">${param.content}</textarea>
 	</p>
 	<input type="submit" value="게시글 등록"/>
-	<a href="index.jsp"><input type="submit" value="취소"></a>
+	<a href="index.jsp"><input type="button" value="취소"></a>
 	</form> 
 
 

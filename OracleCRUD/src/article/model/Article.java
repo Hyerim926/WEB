@@ -1,7 +1,5 @@
 package article.model;
 
-import java.util.Map;
-
 // Article VO 클래스
 public class Article {
 
@@ -25,13 +23,6 @@ public class Article {
 
 	public String getContent() {
 		return content;
-	}
-
-	// 데이터가 유효한지 여부 검사, 잘못된 데이터가 존재하면 errors 맵 객체에 관련 코드 추가
-	public void validate(Map<String, Boolean> errors) {
-		if (title == null || title.trim().isEmpty()) {
-			errors.put("title", Boolean.TRUE);
-		}
 	}
 
 }
