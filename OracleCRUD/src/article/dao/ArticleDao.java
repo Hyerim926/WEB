@@ -22,8 +22,8 @@ public class ArticleDao {
 			// article_id값이 자동으로 increment될 수 있도록 생성한 시퀀스를 이용해 각 칼럼의 데이터 값을
 			// insert해줌(시퀀스명.NEXTVAL)
 			pstmt = conn.prepareStatement("insert into jsp_crud(article_id, article_title, article_content) values(jsp_seq.NEXTVAL,'?','?')");
-			pstmt.setString(2, article.getTitle());
-			pstmt.setString(3, article.getContent());
+			pstmt.setString(1, article.getTitle());
+			pstmt.setString(2, article.getContent());
 			int insertedCount = pstmt.executeUpdate();
 			
 			if(insertedCount > 0) {
