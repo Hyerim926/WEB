@@ -2,8 +2,8 @@ package article.service;
 
 import java.util.Map;
 
-// 신규 게시글 등록 시 필요한 데이터 제공함
-// view와 service(db)의 가교 역할이라고 여기면 됨
+//신규 게시글 등록 시 필요한 데이터 제공함
+//view와 service(db)의 가교 역할이라고 여기면 됨
 public class WriteRequest {
 
 	private String title; // 제목
@@ -29,5 +29,4 @@ public class WriteRequest {
 			errors.put("title", Boolean.TRUE);
 		}
 	}
-
 }

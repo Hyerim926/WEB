@@ -18,7 +18,7 @@
 			<textarea rows="5" cols="30" name="content"></textarea>
 		</p>
 		<input type="submit" value="새 글 등록"> 
-		<a href="/OracleCRUD/index.jsp">[취소]</a>
+		<a href="/OracleCRUD/index.jsp"><input type="button" value="취소"></a>
 	</form>
 
 </body>

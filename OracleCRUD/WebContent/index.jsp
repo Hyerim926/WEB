@@ -9,10 +9,10 @@
 <body>
 
 <p>
-	<a href="write.do">[게시글 등록]</a><br><br>
-	<a href="">[최근 게시글 보기]</a><br><br>
-	<a href="">[최근 게시글 수정]</a><br><br>
-	<a href="">[최근 게시글 삭제]</a><br><br>
+	<a href="write.do"><input type="button" value="게시글 등록"></a><br><br>
+	<a href=""><input type="button" value="최근 게시글 보기"></a><br><br>
+	<a href=""><input type="button" value="최근 게시글 수정"></a><br><br>
+	<a href=""><input type="button" value="최근 게시글 삭제"></a><br><br>
 </p>
 
 </body>

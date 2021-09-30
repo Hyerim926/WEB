@@ -1,6 +1,6 @@
 package article.model;
 
-// Article VO 클래스
+//Article VO 클래스
 public class Article {
 
 	private Integer id; // jsp_crud 테이블의 article_id 필드(칼럼)와 연관
@@ -24,5 +24,4 @@ public class Article {
 	public String getContent() {
 		return content;
 	}
-
 }
