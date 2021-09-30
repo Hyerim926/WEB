@@ -16,6 +16,8 @@ import org.apache.commons.dbcp2.PoolingDriver;
 import org.apache.commons.pool2.impl.GenericObjectPool;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 
+
+
 public class DBCPInitListener implements ServletContextListener {
 			
 			@Override
@@ -47,7 +49,8 @@ public class DBCPInitListener implements ServletContextListener {
 					String username = prop.getProperty("dbUser");
 					String pw = prop.getProperty("dbPass");
 					
-					// 커넥션 풀이 새로운 커넥션을 생성할 때 사용할 커넥션 팩토리(ConnectionFactory)를 생성한다.
+					// 커넥션 풀이 새로운 커넥션을 생성할 때 사용할
+					// 커넥션 팩토리(ConnectionFactory)를 생성한다.
 					ConnectionFactory connFactory =
 							// MySQL 연결에 상요할 jdbcUrl, username, pw를 생성자로 지정한다.
 							new DriverManagerConnectionFactory(jdbcUrl, username, pw);
@@ -94,9 +97,6 @@ public class DBCPInitListener implements ServletContextListener {
 
 			@Override
 			public void contextDestroyed(ServletContextEvent sce) {
-			}	
-
-			
-			
+			}			
 			
 }

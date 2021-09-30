@@ -6,20 +6,21 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class JdbcUtil {
+	
 	public static void close(ResultSet rs) {
 		if(rs != null) {
-			try {
+			try{
 				rs.close();
-			}catch(SQLException ex) {
+			} catch(SQLException ex){
 			}
 		}
-	}
+	}	
 	
 	public static void close(Statement stmt) {
 		if(stmt != null) {
-			try {
+			try{
 				stmt.close();
-			}catch(SQLException ex) {
+			} catch(SQLException ex){
 			}
 		}
 	}
@@ -28,7 +29,7 @@ public class JdbcUtil {
 		if(conn != null) {
 			try {
 				conn.close();
-			}catch(SQLException ex) {
+			} catch(SQLException ex){
 			}
 		}
 	}
@@ -37,7 +38,8 @@ public class JdbcUtil {
 		if(conn != null) {
 			try {
 				conn.rollback();
-			}catch(SQLException ex) {
+			} catch (SQLException ex) {
+				
 			}
 		}
 	}
