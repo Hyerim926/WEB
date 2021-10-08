@@ -9,6 +9,6 @@
 <body>
 	* 게시글이 제대로 등록 처리 되었습니다
 	<br>
-<a  href="/OracleCRUD/index.jsp"><input type="button" value="처음으로"></a>
+<a href="/OracleCRUD/index.jsp"><input type="button" value="처음으로"></a>
 </body>
 </html>

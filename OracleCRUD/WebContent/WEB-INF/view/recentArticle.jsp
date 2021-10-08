@@ -18,6 +18,6 @@
 		<br>
 		<textarea rows="5" cols="30">${article.content}</textarea>
 	</p>
-	<a href="/OracleCRUD/index.jsp">처음으로</a>
+		<a href="/OracleCRUD/index.jsp"><input type="button" value="취소"></a>
 </body>
 </html>

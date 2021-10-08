@@ -18,7 +18,7 @@
 <textarea rows="5" cols="30" name="content">${modReq.content}</textarea>
 </p>
 <input type="submit" value="게시글 수정">
-<a href="/OracleCRUD/index.jsp">[]</a>
+<a href="/OracleCRUD/index.jsp"><input type="button" value="취소"></a>
 
 
 </form>

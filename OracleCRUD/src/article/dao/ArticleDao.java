@@ -15,7 +15,7 @@ public class ArticleDao {
 	private String insert = "insert into jsp_crud values(idx_seq.nextval, ?, ?)";
 	private String select = "select * from jsp_crud where article_id = (select max(article_id) from jsp_crud)";
 	private String update = "update jsp_crud set article_title=?, article_content=? where article_id=(select max(article_id) from jsp_crud)";
-	private String delete = "delete from jsp_crud where article_id=(select max(article_id) from jsp_crud";
+	private String delete = "delete from jsp_crud where article_id=(select max(article_id) from jsp_crud)";
 
 	// 게시글 작성 관련 insert()메서드 구현
 	public Article insert(Connection conn, Article article) throws SQLException {

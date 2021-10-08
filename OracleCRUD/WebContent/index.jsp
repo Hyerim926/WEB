@@ -11,8 +11,8 @@
 <p>
 	<a href="write.do"><input type="button" value="게시글 등록"></a><br><br>
 	<a href="recent.do"><input type="button" value="최근 게시글 보기"></a><br><br>
-	<a href=""><input type="button" value="최근 게시글 수정"></a><br><br>
-	<a href=""><input type="button" value="최근 게시글 삭제"></a><br><br>
+	<a href="modify.do"><input type="button" value="최근 게시글 수정"></a><br><br>
+	<a href="delete.do"><input type="button" value="최근 게시글 삭제"></a><br><br>
 </p>
 
 </body>
