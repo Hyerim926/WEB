@@ -56,23 +56,21 @@ public class ArticleDao {
 	}
 
 	public Article selectById(Connection conn) throws SQLException {
-		PreparedStatement pstmt = null;
+		Statement stmt = null;
 		ResultSet rs = null;
 		try {
-			pstmt = conn.prepareStatement("select * from jsp_crud where article_id = (select max(article_id) from jsp_crud)");
-			rs = pstmt.executeQuery();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("select * from jsp_crud where article_id = (select max(article_id) from jsp_crud)");
 			Article article = null;
-			if(rs.next()) {
-				article = convertArticle(rs);
+			if (rs.next()) {
+				article = new Article(rs.getInt("article_id"), rs.getString("article_title"),
+						rs.getString("article_content"));
 			}
 			return article;
 		} finally {
 			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
+			JdbcUtil.close(stmt);
 		}
 	}
 
-	private Article convertArticle(ResultSet rs) throws SQLException {
-		return new Article(rs.getInt("article_no"), rs.getString("article_title"), rs.getString("article_content"));
-	}
 }
