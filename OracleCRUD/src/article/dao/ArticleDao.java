@@ -12,6 +12,11 @@ import jdbc.JdbcUtil;
 //jsp_crud 테이블에 데이터를 추가할 때 사용할 ArticleDao 클래스를 구현함
 public class ArticleDao {
 
+	private String insert = "insert into jsp_crud values(idx_seq.nextval, ?, ?)";
+	private String select = "select * from jsp_crud where article_id = (select max(article_id) from jsp_crud)";
+	private String update = "update jsp_crud set article_title=?, article_content=? where article_id=(select max(article_id) from jsp_crud)";
+	private String delete = "delete from jsp_crud where article_id=(select max(article_id) from jsp_crud";
+
 	// 게시글 작성 관련 insert()메서드 구현
 	public Article insert(Connection conn, Article article) throws SQLException {
 
@@ -24,7 +29,7 @@ public class ArticleDao {
 			// 쿼리문 실행을 대기함
 			// article_id값이 자동으로 increment될 수 있도록
 			// 생성한 시퀀스를 이용해 각 칼럼의 데이터 값을 insert해줌(시퀀스명.nextval)
-			pstmt = conn.prepareStatement("insert into jsp_crud values(idx_seq.nextval, ?, ?)");
+			pstmt = conn.prepareStatement(insert);
 			// 쿼리문의 빈 값에 article 객체로부터 title과 content를 받아와서 넣어줌
 			pstmt.setString(1, article.getTitle());
 			pstmt.setString(2, article.getContent());
@@ -39,8 +44,7 @@ public class ArticleDao {
 				// createStatement()메서드로 DB로 SQL문을 보내기 위한 SQLServerStatement 개체를 만듦
 				stmt = conn.createStatement();
 				// rs 변수에 article_id가 가장 큰 값(=가장 최근에 들어간 값)에 해당하는 데이터를 조회하는 쿼리문을 실행해줌
-				rs = stmt.executeQuery(
-						"select * from jsp_crud where article_id = (select max(article_id) from jsp_crud)");
+				rs = stmt.executeQuery(select);
 				// 위 쿼리문을 실행해서 저장된 rs의 값을 next()메서드를 이용해 꺼냈을 때
 				if (rs.next()) {
 					// Article insert() 메서드의 return값으로는 rs(저장된 DB)로부터 가져온 각 칼럼값들로 지정해줌
@@ -60,7 +64,7 @@ public class ArticleDao {
 		ResultSet rs = null;
 		try {
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery("select * from jsp_crud where article_id = (select max(article_id) from jsp_crud)");
+			rs = stmt.executeQuery(select);
 			Article article = null;
 			if (rs.next()) {
 				article = new Article(rs.getInt("article_id"), rs.getString("article_title"),
@@ -70,6 +74,22 @@ public class ArticleDao {
 		} finally {
 			JdbcUtil.close(rs);
 			JdbcUtil.close(stmt);
+		}
+	}
+
+	public int update(Connection conn, String title, String content) throws SQLException {
+		try (PreparedStatement pstmt = conn.prepareStatement(update)) {
+			pstmt.setString(1, title);
+			pstmt.setString(2, content);
+			return pstmt.executeUpdate();
+
+		}
+
+	}
+	
+	public int delete(Connection conn) throws SQLException {
+		try(Statement pstmt = conn.createStatement()){
+			return pstmt.executeUpdate(delete);
 		}
 	}
 
