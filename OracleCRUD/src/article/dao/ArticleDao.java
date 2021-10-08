@@ -22,15 +22,15 @@ public class ArticleDao {
 
 		try {
 			// 쿼리문 실행을 대기함
-			// article_id값이 자동으로 increment될 수 있도록 
+			// article_id값이 자동으로 increment될 수 있도록
 			// 생성한 시퀀스를 이용해 각 칼럼의 데이터 값을 insert해줌(시퀀스명.nextval)
 			pstmt = conn.prepareStatement("insert into jsp_crud values(idx_seq.nextval, ?, ?)");
 			// 쿼리문의 빈 값에 article 객체로부터 title과 content를 받아와서 넣어줌
 			pstmt.setString(1, article.getTitle());
 			pstmt.setString(2, article.getContent());
-			
+
 			// 나의 경우, 하단 로직을 짜지 않아서 View에서 DB로 값이 저장되지 않았던 것이었음
-			
+
 			// executeUpdate()된 횟수를 insertedCount라는 변수로 설정함
 			int insertedCount = pstmt.executeUpdate();
 
@@ -52,5 +52,27 @@ public class ArticleDao {
 		} finally {
 			JdbcUtil.close(pstmt);
 		}
+
+	}
+
+	public Article selectById(Connection conn) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement("select * from jsp_crud where article_id = (select max(article_id) from jsp_crud)");
+			rs = pstmt.executeQuery();
+			Article article = null;
+			if(rs.next()) {
+				article = convertArticle(rs);
+			}
+			return article;
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+	}
+
+	private Article convertArticle(ResultSet rs) throws SQLException {
+		return new Article(rs.getInt("article_no"), rs.getString("article_title"), rs.getString("article_content"));
 	}
 }
